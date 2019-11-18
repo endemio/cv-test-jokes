@@ -17,3 +17,21 @@
 	Principles of Package Design
 	Preparing your code for reuse
 	Matthias Noback
+
+Установка:
+    
+```
+git clone https://github.com/endemio/cv-test-jokes.git
+cd ./cv-test-jokes
+```
+
+    !!! Заменить настройки в MAILER_URL на правильные
+    
+```
+docker-compose up -d
+docker-compose exec app bash
+composer install
+php bin/phpunit
+```
+    
+    
