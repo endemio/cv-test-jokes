@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Routing\Annotation\Route;
+use Exception;
 
 class PageController extends AbstractController
 {
@@ -53,7 +54,7 @@ class PageController extends AbstractController
 
         try {
             $categories = $this->category->getCategoriesList();
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             array_push($error,$exception->getMessage());
             $categories = [];
         }
@@ -75,7 +76,7 @@ class PageController extends AbstractController
 
             try{
                 $category = $request->request->get('category');
-            } catch (\Exception $exception){
+            } catch (Exception $exception){
                 array_push($error,$exception->getMessage());
                 $category = null;
             }
@@ -84,7 +85,7 @@ class PageController extends AbstractController
             if ($category) {
                 try {
                     $joke_array = $this->joke->getJoke([$category]);
-                } catch (\Exception $exception) {
+                } catch (Exception $exception) {
                     array_push($error, $exception->getMessage());
                 }
             }
@@ -104,7 +105,7 @@ class PageController extends AbstractController
 
                     $email_sent = true;
 
-                }catch (\Exception $exception){
+                }catch (Exception $exception){
                     array_push($error, $exception->getMessage());
                 }
             }

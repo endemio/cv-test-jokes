@@ -6,8 +6,8 @@ namespace App\Service;
 
 use App\Exceptions\ErrorDuringResponseToGetCategories;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\BadResponseException;
 use Exception;
+use GuzzleHttp\Exception\ClientException;
 
 abstract class AbstractMiscService
 {
@@ -17,6 +17,7 @@ abstract class AbstractMiscService
     /**
      * @param string $url
      * @return string
+     * @throws Exception
      * @throws ErrorDuringResponseToGetCategories
      */
     public function sendResponse(string $url): string
@@ -27,7 +28,7 @@ abstract class AbstractMiscService
 
         try {
             $response = $client->get($url);
-        } catch (BadResponseException $exception) {
+        } catch (ClientException $exception) {
             throw new Exception($exception->getMessage());
         } catch (Exception $exception) {
             throw new Exception($exception->getMessage());
@@ -71,13 +72,13 @@ abstract class AbstractMiscService
                 if (isset($input['value'])) {
                     $list = $input['value'];
                 } else {
-                    throw new ErrorDuringResponseToGetCategories(sprintf('Answer from %s hasnt "value"', $this->url));
+                    throw new ErrorDuringResponseToGetCategories(sprintf('Answer from %s hasn\'t "value"', $this->url));
                 }
             } else {
-                throw new ErrorDuringResponseToGetCategories(sprintf('Answer from %s wasnt "success"', $this->url));
+                throw new ErrorDuringResponseToGetCategories(sprintf('Answer from %s wasn\'t "success"', $this->url));
             }
         } else {
-            throw new ErrorDuringResponseToGetCategories(sprintf('Answer from %s hasnt "type"', $this->url));
+            throw new ErrorDuringResponseToGetCategories(sprintf('Answer from %s hasn\'t "type"', $this->url));
         }
 
         return $list;

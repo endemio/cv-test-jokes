@@ -3,8 +3,9 @@
 
 namespace App\Exceptions;
 
+use Exception;
 
-class ErrorDuringResponseToGetCategories extends \Exception
+class ErrorDuringResponseToGetCategories extends Exception
 {
 
 }
