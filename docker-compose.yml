@@ -1,0 +1,26 @@
+# docker-compose
+version: "3.6"
+services:
+
+  nginx:
+    image: "${IMAGE_NGINX}"
+    restart: always
+    volumes:
+      - ./app/:/var/www
+      - ./logs:/var/log/nginx
+      - ./docker/nginx:/etc/nginx/conf.d
+    ports:
+      - "${NGINX_SERVER_PORT:-8080}:80"
+    depends_on:
+      - app
+
+  app:
+    build: ./docker/php
+    environment:
+      APP_ENV: "${APP_ENV}"
+      APP_SECRET: "${APP_SECRET}"
+      MAILER_URL: "${MAILER_URL}"
+      EMAIL_SUBJECT: "${EMAIL_SUBJECT}"
+    volumes:
+      - ./app:/var/www
+      - ./storage:/var/www/storage

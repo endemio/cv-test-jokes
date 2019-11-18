@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css">
+    {% block stylesheets %}{% endblock %}
+</head>
+<body class="d-flex flex-column">
+
+<div class="main-page d-flex flex-column flex-fill">
+    <div class="bg flex-fill">
+        <div class="data">
+            {% block body %}{% endblock %}
+        </div>
+    </div>
+</div>
+
+
+{% block javascripts %}{% endblock %}
+</body>
+</html>
