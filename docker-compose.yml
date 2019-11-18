@@ -21,6 +21,7 @@ services:
       APP_SECRET: "${APP_SECRET}"
       MAILER_URL: "${MAILER_URL}"
       EMAIL_SUBJECT: "${EMAIL_SUBJECT}"
+      PATH_JOKE_STORE: "${PATH_JOKE_STORE}"
     volumes:
       - ./app:/var/www
       - ./storage:/var/www/storage
